@@ -13,8 +13,11 @@ interface ShopDao {
       @Insert(onConflict = OnConflictStrategy.REPLACE)
       fun insertShop(snag: Shop): Long
 
-      @Query("SELECT * FROM 'Shop' WHERE uid == :matchId")
-      fun getShop(matchId: Int): Shop
+      @Query("SELECT * FROM 'Shop'")
+      fun getShop(): List<Shop>
+
+      @Query("select count(*) as count from 'Shop'")
+      fun getShopCount(): Int
 
       @Query("DELETE FROM `Shop`")
       abstract fun deleteShop()

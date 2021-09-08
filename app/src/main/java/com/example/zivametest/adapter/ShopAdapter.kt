@@ -20,7 +20,7 @@ class ShopAdapter(
     private var actionListener: ProductItemActionListener? = null
 
     interface ProductItemActionListener {
-        fun onItemTap(imageView: ImageView)
+        fun onItemTap(imageView: ImageView, data: Shop?)
     }
 
     fun setActionListener(actionListener: ProductItemActionListener) {
@@ -68,15 +68,11 @@ class ShopAdapter(
 
         val data = users[position]
 
-       /* holder.itemView.setOnClickListener{
-            cellClickListener.onCellClickListener(data!!)
-        }*/
-
-        holder.addtocart.setOnClickListener(View.OnClickListener {
+        holder.addtocart.setOnClickListener {
             actionListener?.onItemTap(
-                holder.shopImage
+                holder.shopImage,data
             )
-        })
+        }
 
 
     }

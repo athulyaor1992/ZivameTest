@@ -29,9 +29,8 @@ class ShopViewModel(
         appDatabase.getShopDao().insertShop(i)
 
     }
-
-    fun getShopDetails(matchId: Int): Shop {
-       return appDatabase.getShopDao().getShop(matchId)
+    fun getShopCount(): Int {
+        return appDatabase.getShopDao().getShopCount()
     }
 
     fun deleteShop() {

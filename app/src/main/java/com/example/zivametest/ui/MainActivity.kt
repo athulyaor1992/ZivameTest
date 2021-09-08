@@ -1,6 +1,7 @@
 package com.example.zivametest.ui
 
 import android.animation.Animator
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -37,28 +38,43 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
+
+        val textView = findViewById<View>(R.id.textNotify) as TextView
+        val cartRelativeLayout = findViewById<View>(R.id.cartRelativeLayout) as RelativeLayout
+
         shopView.layoutManager = LinearLayoutManager(this@MainActivity)
         adapter = ShopAdapter(arrayListOf())
         shopView.adapter = adapter
 
+        itemCounter = viewModel.getShopCount()
+        textView.text = itemCounter.toString()
 
         adapter.setActionListener(object : ShopAdapter.ProductItemActionListener {
 
-            override fun onItemTap(imageView: ImageView) {
-                imageView?.let { makeFlyAnimation(it) }
+            override fun onItemTap(imageView: ImageView, data: Shop?) {
+                makeFlyAnimation(imageView,data)
             }
         })
+
+        cartRelativeLayout.setOnClickListener(){
+
+            val intent = Intent (this@MainActivity, CartActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
     }
 
 
-     private fun makeFlyAnimation(targetView: ImageView) {
+     private fun makeFlyAnimation(targetView: ImageView, data: Shop?) {
         val destView = findViewById<View>(R.id.cartRelativeLayout) as RelativeLayout
         CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(1000)
             .setDestView(destView).setAnimationListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {}
                 override fun onAnimationEnd(animation: Animator) {
                     addItemToCart()
+                    saveInDB(data!!)
                     Toast.makeText(this@MainActivity, "Continue Shopping...", Toast.LENGTH_SHORT).show()
                 }
 
@@ -94,13 +110,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-    private fun saveInDB(result: MutableList<Shop>) {
-        viewModel.deleteShop();
+    private fun saveInDB(data: Shop) {
 
-        for (i in result) {
-            viewModel.insertShop(i);
+            viewModel.insertShop(data)
 
-        }
     }
 
     private  fun retrieveList(users: ArrayList<Shop>) {

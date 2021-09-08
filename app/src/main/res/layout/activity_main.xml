@@ -6,31 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.MainActivity">
 
-<!--    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/blue"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/shopView" >
-
-        <TextView
-            android:id="@+id/classifyName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:text="Gadgets"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/_15sdp"
-            />
-
-    </LinearLayout>-->
-
     <androidx.appcompat.widget.Toolbar xmlns:local="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
         android:layout_alignParentTop="true"
@@ -61,7 +36,7 @@
                 android:layout_marginEnd="5dip"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="Gadgets"
+                android:text="@string/gadget"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="normal"
@@ -76,7 +51,9 @@
                 android:layout_centerVertical="true"
                 android:clickable="true"
                 android:paddingRight="3dip"
-                android:layout_alignParentRight="true">
+                android:layout_alignParentRight="true"
+                android:focusable="true"
+                android:paddingEnd="3dip">
 
                 <ImageView
                     android:id="@+id/cartButtonIV"

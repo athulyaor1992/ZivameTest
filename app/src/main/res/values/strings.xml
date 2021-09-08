@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ZivameTest</string>
+    <string name="cart">Cart</string>
+    <string name="checkout">Checkout</string>
+    <string name="loading">Loading</string>
+    <string name="congratz">Congratulations</string>
+    <string name="orderplace">Your Order has been placed.</string>
+    <string name="continueshop">Continue Shopping</string>
+    <string name="gadget">Gadgets</string>
+    <string name="addcart">Add to Cart</string>
 </resources>

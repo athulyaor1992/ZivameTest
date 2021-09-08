@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <!-- A CardView that contains a TextView -->
-    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,20 +90,20 @@
                         />
 
                 </LinearLayout>
+
                 <Button
                     android:id="@+id/addtocart"
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="27dp"
+                    android:layout_gravity="right|center"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
-                    android:text="Add to Cart"
-                    android:textAllCaps="false"
-                    android:layout_gravity="right|center"
                     android:background="@color/blue"
+                    android:text="@string/addcart"
+                    android:textAllCaps="false"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/_10sdp"
-                    />
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
