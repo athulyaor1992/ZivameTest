@@ -3,12 +3,13 @@ package com.example.zivametest.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.zivametest.R
 import com.example.zivametest.model.Shop
 import kotlinx.android.synthetic.main.shop_item.view.*
-import java.text.SimpleDateFormat
 
 
 class ShopAdapter(
@@ -16,12 +17,20 @@ class ShopAdapter(
 
 ) : RecyclerView.Adapter<ShopAdapter.DataViewHolder>() {
 
-    interface CellClickListener {
-        fun onCellClickListener(data: Shop)
+    private var actionListener: ProductItemActionListener? = null
+
+    interface ProductItemActionListener {
+        fun onItemTap(imageView: ImageView)
     }
 
+    fun setActionListener(actionListener: ProductItemActionListener) {
+        this.actionListener = actionListener
+    }
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val addtocart: Button = itemView.findViewById(R.id.addtocart)
+        val shopImage: ImageView = itemView.findViewById(R.id.shopImage)
 
         fun bind(user: Shop) {
             itemView.apply {
@@ -32,43 +41,12 @@ class ShopAdapter(
                 Glide.with(this)
                     .load(user.image_url)
                     .circleCrop()
-                    .into(shopImage);
-
-/*                val matchScore = user.Score
-                teamAscore.text = matchScore.substring(0, 1)
-                teamBscore.text = matchScore.substring(
-                    matchScore.length - 1,
-                    matchScore.length)
+                    .into(shopImage)
 
                 Glide.with(this)
-                    .load(user.link_A)
+                    .load(user.image_url)
                     .circleCrop()
-                    .into(teamAimage);
-
-                Glide.with(this)
-                    .load(user.link_B)
-                    .circleCrop()
-                    .into(teamBimage);
-
-                val teamAName = user.Team_A
-                val teamBName = user.Team_B
-
-                teamAname.text = teamAName.substring(0, 3)
-                teamBname.text = teamBName.substring(0, 3)
-
-                var date = user.Date
-                var spf = SimpleDateFormat("dd MMMM yyyy HH:mm")
-                val newDate = spf.parse(date)
-                spf = SimpleDateFormat("EEE dd MMM")
-                date = spf.format(newDate)
-                matchDate.text = date
-
-                var time = user.Date
-                var spf1 = SimpleDateFormat("dd MMMM yyyy HH:mm")
-                val newTime = spf1.parse(time)
-                spf1 = SimpleDateFormat("hh:mm a")
-                time = spf1.format(newTime)
-                matchTime.text = time*/
+                    .into(shopImageAnim)
 
             }
         }
@@ -93,6 +71,13 @@ class ShopAdapter(
        /* holder.itemView.setOnClickListener{
             cellClickListener.onCellClickListener(data!!)
         }*/
+
+        holder.addtocart.setOnClickListener(View.OnClickListener {
+            actionListener?.onItemTap(
+                holder.shopImage
+            )
+        })
+
 
     }
 

@@ -1,18 +1,20 @@
 package com.example.zivametest.ui
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.animation.Animator
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.ViewModelProviders.of
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zivametest.R
 import com.example.zivametest.adapter.ShopAdapter
 import com.example.zivametest.model.Shop
+import com.example.zivametest.util.CircleAnimationUtil
 import com.example.zivametest.util.Status
 import com.example.zivametest.viewmodel.ShopViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ShopViewModel
     private lateinit var adapter: ShopAdapter
+    private  var itemCounter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,36 @@ class MainActivity : AppCompatActivity() {
         shopView.layoutManager = LinearLayoutManager(this@MainActivity)
         adapter = ShopAdapter(arrayListOf())
         shopView.adapter = adapter
+
+
+        adapter.setActionListener(object : ShopAdapter.ProductItemActionListener {
+
+            override fun onItemTap(imageView: ImageView) {
+                imageView?.let { makeFlyAnimation(it) }
+            }
+        })
+
+    }
+
+
+     private fun makeFlyAnimation(targetView: ImageView) {
+        val destView = findViewById<View>(R.id.cartRelativeLayout) as RelativeLayout
+        CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(1000)
+            .setDestView(destView).setAnimationListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    addItemToCart()
+                    Toast.makeText(this@MainActivity, "Continue Shopping...", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            }).startAnimation()
+    }
+
+    private fun addItemToCart() {
+        val textView = findViewById<View>(R.id.textNotify) as TextView
+        textView.text = (++itemCounter).toString()
     }
 
     private fun setupObservers() {

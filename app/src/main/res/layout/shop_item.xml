@@ -18,6 +18,20 @@
             android:layout_margin="10dp"
             android:orientation="horizontal">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+         >
+
+            <ImageView
+                android:id="@+id/shopImageAnim"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="6dp" />
+
             <ImageView
                 android:id="@+id/shopImage"
                 style="@style/TextAppearance.AppCompat.Small"
@@ -26,6 +40,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="6dp" />
+
+        </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

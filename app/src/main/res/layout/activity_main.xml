@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.MainActivity">
 
-    <LinearLayout
+<!--    <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -29,14 +29,96 @@
             android:textSize="@dimen/_15sdp"
             />
 
-    </LinearLayout>
+    </LinearLayout>-->
+
+    <androidx.appcompat.widget.Toolbar xmlns:local="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/shopView"
+        android:background="@color/blue" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="-5dip"
+            android:layout_marginEnd="10dip"
+            android:layout_marginLeft="-5dip"
+            android:layout_marginRight="10dip">
+
+
+            <TextView
+                android:id="@+id/toolbar_center_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginEnd="5dip"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="Gadgets"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:layout_marginRight="15dp" />
+
+
+            <RelativeLayout
+                android:id="@+id/cartRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:paddingRight="3dip"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:id="@+id/cartButtonIV"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@null"
+                    android:clickable="false"
+                    android:padding="5dip"
+                    android:rotationY="@integer/locale_mirror_flip"
+                    android:autoMirrored="true"
+                    android:src="@drawable/cart" />
+
+                <TextView
+                    android:id="@+id/textNotify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/cartButtonIV"
+                    android:layout_alignTop="@id/cartButtonIV"
+                    android:layout_marginEnd="5dip"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/notification_circle"
+                    android:gravity="center"
+                    android:minHeight="20dip"
+                    android:minWidth="20dip"
+                    android:padding="3dip"
+                    android:text="0"
+                    android:textColor="#424242"
+                    android:textSize="12sp"
+                    android:layout_alignRight="@id/cartButtonIV"
+                    android:layout_marginRight="5dip" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shopView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/linear"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:layout_marginTop="@dimen/_5sdp"
         />
 
